@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Persons from "./components/Persons";
 import Filter from "./components/Filter";
 import Form from "./components/Form";
-import axios from "axios";
+import servicePersons from "./services/persons";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
@@ -10,23 +10,37 @@ const App = () => {
   const [newNumber, setNewNumber] = useState("");
   const [filter, setFilter] = useState("");
 
-  const hookInitialLoad = () => {
-    axios
-      .get("http://localhost:3001/persons")
-      .then((response) => setPersons(response.data));
+  const getAllPersons = () => {
+    console.log("vino");
+    servicePersons.getAll().then((persons) => {
+      console.log(persons);
+      setPersons(persons);
+    });
   };
 
-  useEffect(hookInitialLoad, []);
+  useEffect(getAllPersons, []);
 
   const handleButtonClick = (event) => {
     event.preventDefault();
     if (!persons.find(({ name }) => name === newName)) {
-      setPersons(persons.concat({ name: newName, number: newNumber }));
+      const newPerson = { name: newName, number: newNumber };
+      servicePersons
+        .create(newPerson)
+        .then((returnedPerson) => setPersons(persons.concat(returnedPerson)));
     } else {
       alert(`${newName} is already added to phonebook`);
     }
     setNewName("");
     setNewNumber("");
+  };
+
+  const handleDeleteButtonClick = (id) => {
+    const name = persons.find((e) => e.id === id).name;
+    if (window.confirm(`Do you want to remove ${name} from the Phonebook?`)) {
+      servicePersons
+        .remove(id)
+        .then(setPersons(persons.filter((p) => p.id !== id)));
+    }
   };
 
   const handleNameChange = (event) => {
@@ -56,7 +70,10 @@ const App = () => {
         newName={newName}
         newNumber={newNumber}
       />
-      <Persons showPersons={showPersons} />
+      <Persons
+        showPersons={showPersons}
+        handleClick={handleDeleteButtonClick}
+      />
     </div>
   );
 };
