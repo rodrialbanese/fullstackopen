@@ -3,12 +3,22 @@ import Persons from "./components/Persons";
 import Filter from "./components/Filter";
 import Form from "./components/Form";
 import servicePersons from "./services/persons";
+import "./index.css"
+import Notification from "./components/Notification"
 
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [filter, setFilter] = useState("");
+  const [successNotification, setSuccessNotification] = useState(null);
+
+  const setNotification = (message) => {
+    setSuccessNotification(message)
+    setTimeout(() => {
+      setSuccessNotification(null)
+    }, 5000)
+  }
 
   const getAllPersons = () => {
     console.log("vino");
@@ -22,13 +32,22 @@ const App = () => {
 
   const handleButtonClick = (event) => {
     event.preventDefault();
-    if (!persons.find(({ name }) => name === newName)) {
+    const exist = persons.find(({ name }) => name === newName)
+    if (!exist) {
       const newPerson = { name: newName, number: newNumber };
       servicePersons
         .create(newPerson)
         .then((returnedPerson) => setPersons(persons.concat(returnedPerson)));
+        setNotification(`${newPerson.name} added to Phonebook`)
+      
     } else {
-      alert(`${newName} is already added to phonebook`);
+      if (window.confirm(`${newName} is already added to phonebook, replace the old number with the new one?`)) {
+        const replacedPerson = { ...exist, number: newNumber }
+        servicePersons
+          .replace(exist.id, replacedPerson)
+          .then(setPersons(persons.map(person => person.id === exist.id ? replacedPerson : person)))
+          setNotification(`${replacedPerson.name}'s number changed to ${replacedPerson.number}`)
+      };
     }
     setNewName("");
     setNewNumber("");
@@ -62,6 +81,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={successNotification}/>
       <Filter handleFilterChange={handleFilterChange} value={filter} />
       <Form
         handleNameChange={handleNameChange}

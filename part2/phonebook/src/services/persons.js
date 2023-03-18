@@ -15,5 +15,12 @@ const remove = (id) => {
   return request.then((response) => response.data);
 };
 
+const replace = (id, newObject) => {
+  const request = axios.put(`${baseUrl}/${id}`, newObject);
+  return request.then((response) => response.data);
+  // const request = axios.delete(`${baseUrl}/${id}`);
+  // return request.then((response) => response.data);
+};
+
 // eslint-disable-next-line
-export default { getAll, create, remove };
+export default { getAll, create, remove, replace };
