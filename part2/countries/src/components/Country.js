@@ -1,6 +1,6 @@
-const Country = ({country, weather}) => {
-    if (country && weather) {
-        console.log(weather)
+const Country = ({country}) => {
+    if (country) {
+        console.log("en country")
         return (
             <div>
                 <h1>{country.name.common}</h1>
@@ -10,16 +10,12 @@ const Country = ({country, weather}) => {
                 <ul>
                 {Object.values(country.languages).map(l => <li key={l}>{l}</li>)}
                 </ul>
-                <img src={country.flags.png} alt={country.flags.alt} />
-                <h1>Weather in {country.capital[0]}</h1>
-                <p>Temperature: {weather.main.temp} Celsius</p>
-                <img style={{backgroundColor: 'gray'}} src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt="" />
-                <p>Wind: {weather.wind.speed} m/s</p>
+                <img src={country.flags.png} alt="Flag of the Country" />
             </div>
         )
     }
     else {
-        return ""
+        return null
     }
 }
 export default Country
