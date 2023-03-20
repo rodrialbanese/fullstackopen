@@ -1,0 +1,21 @@
+http://localhost:3001/api/persons/
+
+###
+
+http://localhost:3001/api/info/
+
+###
+
+http://localhost:3001/api/persons/8339008537
+
+
+###
+DELETE http://localhost:3001/api/persons/8339008537
+###
+
+POST http://localhost:3001/api/persons/
+Content-Type: application/json
+
+{
+    "name": "Rodrigo2"    
+}
