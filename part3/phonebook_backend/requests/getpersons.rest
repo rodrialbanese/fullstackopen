@@ -6,16 +6,27 @@ http://localhost:3001/api/info/
 
 ###
 
-http://localhost:3001/api/persons/8339008537
+http://localhost:3001/api/persons/641dc5ee703dafeb31f61e655656
 
 
 ###
-DELETE http://localhost:3001/api/persons/8339008537
+DELETE http://localhost:3001/api/persons/641de061a9ac3454f7bd3adf
 ###
 
 POST http://localhost:3001/api/persons/
 Content-Type: application/json
 
 {
-    "name": "Rodrigo2"    
+    "name": "23211-3-8898888888",
+    "number": "12-1323244424"
+}
+
+###
+
+PUT http://localhost:3001/api/persons/641dc56c77b85f9c0f929100
+Content-Type: application/json
+
+{
+    "name": "von Moltke",
+    "number": "123-885599-9-gdddsdsrande"
 }

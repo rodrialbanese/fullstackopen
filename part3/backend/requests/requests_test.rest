@@ -2,11 +2,11 @@ http://localhost:3001/api/notes/
 
 ###
 
-http://localhost:3001/api/notes/1
+http://localhost:3001/api/notes/641dbfaed52a40560751abaa
 
 ###
 
-DELETE http://localhost:3001/api/notes/1
+DELETE http://localhost:3001/api/notes/641dbfaed52a40560751abaa
 
 ###
 
@@ -14,7 +14,16 @@ POST http://localhost:3001/api/notes/
 Content-Type: application/json
 
 {
-    "content" : "prueba",
+    "content" : "p",
     "important" : true
 }
 
+###
+
+PUT http://localhost:3001/api/notes/641dc0896d85522666f40f22
+Content-Type: application/json
+
+{
+    "content" : "prueba",
+    "important" : false
+}
