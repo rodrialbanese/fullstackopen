@@ -1,0 +1,15 @@
+POST http://localhost:3001/api/users/
+Content-Type: application/json
+
+{
+  "username": "ralba",
+  "name": "Rodrigo Albanese3",
+  "password": "password"
+}
+
+###
+
+http://localhost:3001/api/users/
+
+###
+http://localhost:3001/api/users/delete
