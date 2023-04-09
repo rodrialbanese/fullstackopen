@@ -1,0 +1,32 @@
+http://localhost:3001/api/blogs/delete
+
+###
+
+http://localhost:3001/api/blogs/
+
+###
+
+POST http://localhost:3001/api/blogs/
+Content-Type: application/json
+
+
+{
+  "title": "Titulo Permitido 6",
+  "author": "Autor",
+  "url": "www.google.com",
+  "likes": 0
+}
+
+###
+DELETE http://localhost:3001/api/blogs/643069815c1ced763cae4d82
+
+
+###
+
+PUT http://localhost:3001/api/blogs/64318adbcb49e3ebc55184a3
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJhbGJhIiwiaWQiOiI2NDMxNzZlNTExYWYwY2U4YzczY2FjNTUiLCJpYXQiOjE2ODA5NjgzOTR9.ra7GLoaumrErUjOi7RyKPWr__RCzkL-sBvwWgtAMVN0
+
+{
+  "likes": 1
+}
