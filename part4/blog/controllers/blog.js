@@ -49,10 +49,10 @@ blogsRouter.put("/:id", async (request, response) => {
 	}
 
 	const blog = await Blog.findById(request.params.id)
-
-	if (!(blog.user.toString() === requestUser.id.toString())) {
-		return response.status(401).json({ error: "not valid user" })
-	}
+	// any user can like while logged in
+	// if (!(blog.user.toString() === requestUser.id.toString())) {
+	// 	return response.status(401).json({ error: "not valid user" })
+	// }
 
 	blog.likes = body.likes
 

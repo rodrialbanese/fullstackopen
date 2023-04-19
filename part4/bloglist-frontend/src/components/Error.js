@@ -1,5 +1,5 @@
-const Error = ({message}) => {
-    if (message == null) {
+const Error = ({ message }) => {
+    if (message === null) {
         return null
     }
     return (
