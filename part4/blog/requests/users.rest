@@ -13,3 +13,7 @@ http://localhost:3003/api/users/
 
 ###
 http://localhost:3001/api/users/delete
+
+###
+
+http://localhost:3003/api/testing/reset
